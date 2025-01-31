@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WeatherApp.Models.Views"
+             x:DataType="vm:WeatherInfoViewModel"
+             x:Class="WeatherApp.Pages.WeatherInfoPage"
+             Title="Weather Information">
+    <VerticalStackLayout >
+        <Border Background="AliceBlue" Margin="20">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+
+            <Grid Margin="20" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width=".5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Entry x:Name="LatitudeEntry" Placeholder="Latitude" Grid.Column="0" Grid.Row="0" BackgroundColor="White" Margin="20" Text="{Binding Latitude}"/>
+                <Entry x:Name="LongitudeEntry" Placeholder="Longitude" Grid.Column="1" Grid.Row="0" BackgroundColor="White"  Margin="20" Text="{Binding Longitude}"/>
+
+                <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Get Weather" Margin="10" WidthRequest="200" Background="LightSkyBlue" HorizontalOptions="CenterAndExpand" Command="{Binding FetchWeatherInfoCommand}"/>
+            </Grid>
+        </Border>
+
+        <Image x:Name="ImageIcon" Source="{Binding Icon}" HeightRequest="100" WidthRequest="100"/>
+        <Label x:Name="Temperature" Text="{Binding Temperature}"/>
+        <Label x:Name="Condition" Text="{Binding Weather}"/>
+        <Label x:Name="Location" Text="{Binding Location}"/>
+
+        <Grid ColumnSpacing="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Padding="10" WidthRequest="200" HeightRequest="100" HorizontalOptions="CenterAndExpand">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <Label Text="{Binding Humidity}" HorizontalTextAlignment="Center"/>
+                    <Label Text="Humidity" HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Column="1" Padding="10" WidthRequest="200" HeightRequest="100" HorizontalOptions="CenterAndExpand">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <Label Text="{Binding CloudCoverLevel}" HorizontalTextAlignment="Center"/>
+                    <Label Text="Cloud" HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border Grid.Column="2" Padding="10" WidthRequest="200" HeightRequest="100" HorizontalOptions="CenterAndExpand">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <Label Text="{Binding IsDay}" HorizontalTextAlignment="Center" />
+                    <Label Text="Is Day" HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>
